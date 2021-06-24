@@ -1,13 +1,13 @@
 const db = require('../../data/db-config');
 const createNotification = async (notificationObject) => {
-  if (notificationObject['Text']) {
+  if (notificationObject.text) {
     return await db('Notifications')
       .insert({
-        Text: notificationObject[`Text`],
-        Type: notificationObject[`Type`] || 'information',
-        LinksTo: notificationObject[`LinksTo`] || '',
-        Date: notificationObject[`Date`] || new Date(),
-        DueDate: notificationObject[`DueDate`] || null,
+        Text: notificationObject.text,
+        Type: notificationObject.type || 'information',
+        LinksTo: notificationObject.linksTo || '',
+        Date: notificationObject.date || new Date(),
+        DueDate: notificationObject.dueDate.toString() || null,
       })
       .returning('ID');
   }
