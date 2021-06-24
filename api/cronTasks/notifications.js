@@ -2,6 +2,7 @@ const events = require('./eventSchedule.js');
 const cron = require('node-cron');
 const cronNotificationTasks = require('./cronNotificationTasks');
 const postgresDateFormatter = require('../../lib/postgresDateFormatter');
+//slice is used for testing purposes due to postgres rate limiting - replace with event.forEach to schedule all notifications
 [...events.slice(0,1)].forEach((event) => {
   cron.schedule(
     `${event.opens.minute} ${event.opens.hour} * * ${event.opens.day}`,
